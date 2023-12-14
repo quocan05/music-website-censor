@@ -4,7 +4,7 @@ import { Breadcrumb, Divider, Layout, Menu, Space, theme } from "antd";
 import MenuSiderbar from "./Menu";
 import { HeaderCensor } from "./Header";
 import Link from "antd/es/typography/Link";
-import { ContentCensor } from "./Content/OverviewContent";
+import { ContentCensor } from "./Content";
 
 const { Header, Content, Footer, Sider } = Layout;
 

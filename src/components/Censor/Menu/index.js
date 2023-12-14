@@ -19,8 +19,8 @@ function getItem(label, key, icon, children, type) {
 
 const MenuSiderbar = [
   getItem(
-    <Link to="/censor-statistical">Statistical</Link>,
-    "statistical",
+    <Link to="/censor-overview">Overview</Link>,
+    "overview",
     <AreaChartOutlined />
   ),
 
@@ -46,16 +46,6 @@ const MenuSiderbar = [
     // ]
   ),
 
-  getItem(
-    <Link to="/censor-manage-censors">Censors</Link>,
-    "censors",
-    <AuditOutlined />
-    // [
-    //   getItem(<Link to="/add-new-censor">Add new censor</Link>, "add-new"),
-    //   getItem(<Link to="/edit-censor">Edit censor</Link>, "edit"),
-    //   getItem(<Link to="/delete-censor">Delete censor</Link>, "delete"),
-    // ]
-  ),
   getItem(
     <Link to="/censor-manage-songs">Songs</Link>,
     "songs",
