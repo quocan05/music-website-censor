@@ -2,10 +2,13 @@ import {
   AreaChartOutlined,
   AuditOutlined,
   BankOutlined,
+  ContainerOutlined,
   CustomerServiceOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { FaMusic } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { PiMicrophoneStageDuotone } from "react-icons/pi";
 
 function getItem(label, key, icon, children, type) {
   return {
@@ -38,8 +41,7 @@ const MenuSiderbar = [
   getItem(
     <Link to="/censor-manage-singers">Singers</Link>,
     "singers",
-    <CustomerServiceOutlined />
-    // [
+    <PiMicrophoneStageDuotone /> // [
     //   getItem(<Link to="/add-new-singer">Add new singer</Link>, "add-new"),
     //   getItem(<Link to="/edit-singer">Edit singers</Link>, "edit"),
     //   getItem(<Link to="/delete-singer">Delete singer</Link>, "delete"),
@@ -49,7 +51,7 @@ const MenuSiderbar = [
   getItem(
     <Link to="/censor-manage-songs">Songs</Link>,
     "songs",
-    <CustomerServiceOutlined />
+    <FaMusic />
     // [
     //   getItem(<Link to="/add-new-song">Add new song</Link>, "add-new"),
     //   getItem(<Link to="/edit-song">Edit song</Link>, "edit"),
@@ -58,9 +60,9 @@ const MenuSiderbar = [
   ),
 
   getItem(
-    <Link to="censor-payment">Payments</Link>,
-    "payment",
-    <BankOutlined />
+    <Link to="censor-playlist">Playlists</Link>,
+    "playlist",
+    <ContainerOutlined />
   ),
   //   {
   //     key: "user",
