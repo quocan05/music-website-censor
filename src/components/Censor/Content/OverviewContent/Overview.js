@@ -20,8 +20,14 @@ import { RankingDay } from "./RankingDay";
 import { RankingWeek } from "./RankingWeek";
 import TopSinger from "./TopSinger";
 import TopSong from "./TopSong";
+import { useNavigate } from "react-router-dom";
 const shadow = "0 4px 8px rgba(0, 0, 0, 0.4)";
 export const DetailOverview = () => {
+  const navigate = useNavigate();
+  const handleClickSeeAllPlaylist = () => {};
+  const handleClickSeeAllSong = () => {
+    navigate("/censor-manage-songs/songs");
+  };
   return (
     <>
       <h1>Overview</h1>
@@ -36,11 +42,19 @@ export const DetailOverview = () => {
             gap: "20px",
           }}
         >
-          <h2>Newest Songs</h2>
+          <div className="header-space">
+            <h2>Newest Songs</h2>
+            <Button type="link" onClick={handleClickSeeAllSong}>
+              See all
+            </Button>
+          </div>
           <ListNewestSong />
+
           <div className="header-space">
             <h2>Playlists</h2>
-            <ButtonLinkSeeAll />
+            <Button type="link" onClick={handleClickSeeAllPlaylist}>
+              See all
+            </Button>
           </div>
           <SingerPlaylist />
           <GenrePlaylist />

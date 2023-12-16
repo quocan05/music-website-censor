@@ -32,7 +32,7 @@ export const SideBar = () => {
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["overview"]}
           mode="inline"
           items={MenuSiderbar}
         />

@@ -49,14 +49,9 @@ const MenuSiderbar = [
   ),
 
   getItem(
-    <Link to="/censor-manage-songs">Songs</Link>,
+    <Link to="/censor-manage-songs/songs">Songs</Link>,
     "songs",
     <FaMusic />
-    // [
-    //   getItem(<Link to="/add-new-song">Add new song</Link>, "add-new"),
-    //   getItem(<Link to="/edit-song">Edit song</Link>, "edit"),
-    //   getItem(<Link to="/delete-song">Delete song</Link>, "delete"),
-    // ]
   ),
 
   getItem(
