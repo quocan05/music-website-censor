@@ -3,6 +3,7 @@ import { Radio, Tabs } from "antd";
 import ListAllSongs from "../list/ListAllSongs";
 import ListPendingSong from "../list/ListPendingSong";
 import { EditSong } from "../edit";
+import DrawerEditSong from "../drawer/EditDrawer";
 const TabSongs = () => {
   const [size, setSize] = useState("small");
   const tabs = [
@@ -27,6 +28,7 @@ const TabSongs = () => {
           };
         })}
       />
+      <DrawerEditSong />
     </div>
   );
 };

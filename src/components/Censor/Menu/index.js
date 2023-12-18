@@ -29,17 +29,6 @@ const MenuSiderbar = [
   ),
 
   getItem(
-    <Link to="/censor-manage-users">Users</Link>,
-    "users",
-    <UserOutlined />
-    // [
-    //   getItem(<Link to="/add-new-user">Add new user</Link>, "add-new"),
-    //   getItem(<Link to="/edit-user">Edit user</Link>, "edit"),
-    //   getItem(<Link to="/delete-user">Delete user</Link>, "delete"),
-    // ]
-  ),
-
-  getItem(
     <Link to="/censor-manage-singers/singers">Singers</Link>,
     "singers",
     <PiMicrophoneStageDuotone /> // [
