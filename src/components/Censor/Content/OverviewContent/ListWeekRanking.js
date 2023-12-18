@@ -1,3 +1,4 @@
+import { CustomerServiceOutlined } from "@ant-design/icons";
 import { Avatar, List } from "antd";
 import { FaMusic } from "react-icons/fa";
 
@@ -22,7 +23,7 @@ export const ListWeekRanking = () => {
       renderItem={(item, index) => (
         <List.Item>
           <List.Item.Meta
-            avatar={<FaMusic />}
+            avatar={<CustomerServiceOutlined />}
             title={<a href="https://ant.design">{item.title}</a>}
             description="Singer: ${namesinger}"
           />

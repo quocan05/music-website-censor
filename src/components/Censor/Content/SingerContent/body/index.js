@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Radio, Tabs } from "antd";
-import ListAllSongs from "../list/ListAllSongs";
-import ListPendingSong from "../list/ListPendingSong";
-import { EditSong } from "../edit";
-const TabSongs = () => {
+import ListAllSingers from "../list/ListAllSinger";
+import ListPendingSingers from "../list/ListPendingSinger";
+
+export const TabSinger = () => {
   const [size, setSize] = useState("small");
   const tabs = [
-    { name: "All songs", id: 1, element: <ListAllSongs /> },
-    { name: "Pending songs", id: 2, element: <ListPendingSong /> },
-    { name: "Edit song", id: 3, element: <EditSong /> },
+    { name: "All Singers", id: 1, element: <ListAllSingers /> },
+    { name: "Pending Singers", id: 2, element: <ListPendingSingers /> },
   ];
   const onChange = (e) => {
     setSize(e.target.value);
@@ -30,4 +29,3 @@ const TabSongs = () => {
     </div>
   );
 };
-export default TabSongs;

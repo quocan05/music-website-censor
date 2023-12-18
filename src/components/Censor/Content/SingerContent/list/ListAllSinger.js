@@ -5,46 +5,32 @@ import { Button, Input, Modal, Space, Table } from "antd";
 const data = [
   {
     key: "1",
-    name: "Song 2",
-    singer: "Singer 1",
+    name: "Singer 2",
     status: "public",
-    category: "edm",
-    playlist: "Playlist 1",
   },
   {
     key: "2",
-    name: "Song 22",
-    singer: "Singer 11",
+    name: "Singer 22",
+
     status: "private",
-    category: "edm",
-    playlist: "Playlist oasjd",
   },
   {
     key: "3",
-    name: "Song 3",
-    singer: "Singer 1",
+    name: "Sinmger 3",
     status: "private",
-    category: "edm",
-    playlist: "Playlist 1",
   },
   {
     key: "4",
-    name: "Song 122",
-    singer: "Singer 1",
+    name: "Singer 122",
     status: "public",
-    category: "jazz",
-    playlist: "Playlist 1",
   },
   {
     key: "5",
-    name: "Song 1",
-    singer: "Singer 1",
+    name: "Singer 1",
     status: "public",
-    category: "edm",
-    playlist: "Playlist 1",
   },
 ];
-const ListAllSongs = () => {
+const ListAllSingers = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
@@ -191,41 +177,13 @@ const ListAllSongs = () => {
   });
   const columns = [
     {
-      title: "Song name",
+      title: "Singer name",
       dataIndex: "name",
       key: "name",
       width: "30%",
       ...getColumnSearchProps("name"),
     },
-    {
-      title: "Singer",
-      dataIndex: "singer",
-      key: "singer",
-      width: "20%",
-      ...getColumnSearchProps("singer"),
-    },
-    {
-      title: "Category",
-      dataIndex: "category",
-      key: "category",
-      width: "20%",
-      ...getColumnSearchProps("category"),
-    },
-    {
-      title: "Playlist name",
-      dataIndex: "playlist",
-      key: "playlist",
-      width: "20%",
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      width: "20%",
-      //...getColumnSearchProps("status"),
-      //   sorter: (a, b) => a.status.length - b.status.length,
-      //   sortDirections: ["descend", "ascend"],
-    },
+
     {
       title: "Action",
       key: "action",
@@ -245,13 +203,12 @@ const ListAllSongs = () => {
       >
         {selectedRow && (
           <div>
-            <p>Song Name: {selectedRow.name}</p>
-            <p>Singer: {selectedRow.singer}</p>
-            {/* more info about song */}
+            <p>Singer Name: {selectedRow.name}</p>
+            {/* more info about singer */}
           </div>
         )}
       </Modal>
     </>
   );
 };
-export default ListAllSongs;
+export default ListAllSingers;

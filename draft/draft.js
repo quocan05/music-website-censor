@@ -1,19 +1,6 @@
 import React, { useState } from "react";
 import { Avatar, List, Radio, Space } from "antd";
-const data = [
-  {
-    title: "Song 1",
-  },
-  {
-    title: "Song 2",
-  },
-  {
-    title: "Song 3",
-  },
-  {
-    title: "Song 4",
-  },
-];
+
 
 const App = () => {
   return (

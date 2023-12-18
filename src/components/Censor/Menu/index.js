@@ -4,6 +4,7 @@ import {
   BankOutlined,
   ContainerOutlined,
   CustomerServiceOutlined,
+  FileSearchOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { FaMusic } from "react-icons/fa";
@@ -39,7 +40,7 @@ const MenuSiderbar = [
   ),
 
   getItem(
-    <Link to="/censor-manage-singers">Singers</Link>,
+    <Link to="/censor-manage-singers/singers">Singers</Link>,
     "singers",
     <PiMicrophoneStageDuotone /> // [
     //   getItem(<Link to="/add-new-singer">Add new singer</Link>, "add-new"),
@@ -58,6 +59,11 @@ const MenuSiderbar = [
     <Link to="censor-playlist">Playlists</Link>,
     "playlist",
     <ContainerOutlined />
+  ),
+  getItem(
+    <Link to="censor-support">Support</Link>,
+    "support",
+    <FileSearchOutlined />
   ),
   //   {
   //     key: "user",
