@@ -133,6 +133,7 @@ const ListPendingSong = () => {
         renderItem={(item) => (
           <List.Item
             actions={[
+              <Button>Play</Button>,
               <Popconfirm
                 title="Reject this song?"
                 description="Are you sure to reject this song?"

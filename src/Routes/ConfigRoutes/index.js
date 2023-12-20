@@ -1,5 +1,7 @@
 import { Censor } from "../../components/Censor";
 import { DetailOverview } from "../../components/Censor/Content/OverviewContent/Overview";
+import { ManagePlaylists } from "../../components/Censor/Content/PlaylistContent";
+import { DetailPlaylist } from "../../components/Censor/Content/PlaylistContent/detail";
 import { ManageSinger } from "../../components/Censor/Content/SingerContent";
 import { TabSinger } from "../../components/Censor/Content/SingerContent/body";
 import { ManageSongs } from "../../components/Censor/Content/SongContent";
@@ -38,6 +40,16 @@ const RoutesConfig = [
         element: <TabSinger />,
       },
     ],
+  },
+
+  {
+    path: "/censor-manage-playlist",
+    element: <ManagePlaylists />,
+  },
+
+  {
+    path: "detail-playlist",
+    element: <DetailPlaylist />,
   },
 ];
 

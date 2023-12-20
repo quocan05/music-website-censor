@@ -45,7 +45,7 @@ const MenuSiderbar = [
   ),
 
   getItem(
-    <Link to="censor-playlist">Playlists</Link>,
+    <Link to="censor-manage-playlist">Playlists</Link>,
     "playlist",
     <ContainerOutlined />
   ),

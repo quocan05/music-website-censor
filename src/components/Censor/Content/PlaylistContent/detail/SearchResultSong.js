@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Avatar, Divider, List, Skeleton } from "antd";
+import { Avatar, Button, Divider, List, Skeleton } from "antd";
 import { useSelector } from "react-redux";
-const SearchResult = () => {
+const SearchResultSong = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
   const resultSearch = useSelector((state) => state.search.input);
+  //console.log("SEarch input: >>>", resultSearch);
   const loadMoreData = () => {
     if (loading) {
       return;
@@ -30,11 +31,15 @@ const SearchResult = () => {
   }, []);
 
   useEffect(() => {
+    // Lọc dữ liệu từ 'data' dựa trên 'resultSearch' và cập nhật 'list'
     const filteredData = data.filter((item) =>
       item.name.last.toLowerCase().includes(resultSearch.toLowerCase())
     );
     setList(filteredData);
-  }, [resultSearch]);
+  }, [resultSearch, data]);
+
+  const handleAddToPlaylist = () => {};
+
   return (
     <div
       id="scrollableDiv"
@@ -67,10 +72,12 @@ const SearchResult = () => {
             <List.Item key={item.email}>
               <List.Item.Meta
                 avatar={<Avatar src={item.picture.large} />}
-                title={<a href="https://ant.design">{item.name.last}</a>}
-                description={item.email}
+                title={<a href="">{item.name.last}</a>}
+                description="singer: ${singername}, category: ${category}"
               />
-              <div>Content</div>
+              <Button type="primary" onClick={handleAddToPlaylist}>
+                Add
+              </Button>
             </List.Item>
           )}
         />
@@ -78,4 +85,4 @@ const SearchResult = () => {
     </div>
   );
 };
-export default SearchResult;
+export default SearchResultSong;

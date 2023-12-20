@@ -15,6 +15,18 @@ export const ModalReducer = (state = initialState, action) => {
         open: false,
       };
 
+    case "OPEN_MODAL_SEARCH":
+      return {
+        ...state,
+        open: true,
+      };
+
+    case "CLOSE_MODAL_SEARCH":
+      return {
+        ...state,
+        open: false,
+      };
+
     default:
       return state;
   }
