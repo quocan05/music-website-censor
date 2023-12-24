@@ -1,35 +1,36 @@
 import { SearchOutlined } from "@ant-design/icons";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { Button, Input, Modal, Space, Table } from "antd";
-const data = [
-  {
-    key: "1",
-    name: "Singer 2",
-    status: "public",
-  },
-  {
-    key: "2",
-    name: "Singer 22",
+import { getAllSingers } from "../../../../../services/singers";
+// const data = [
+//   {
+//     key: "1",
+//     name: "Singer 2",
+//     status: "public",
+//   },
+//   {
+//     key: "2",
+//     name: "Singer 22",
 
-    status: "private",
-  },
-  {
-    key: "3",
-    name: "Sinmger 3",
-    status: "private",
-  },
-  {
-    key: "4",
-    name: "Singer 122",
-    status: "public",
-  },
-  {
-    key: "5",
-    name: "Singer 1",
-    status: "public",
-  },
-];
+//     status: "private",
+//   },
+//   {
+//     key: "3",
+//     name: "Sinmger 3",
+//     status: "private",
+//   },
+//   {
+//     key: "4",
+//     name: "Singer 122",
+//     status: "public",
+//   },
+//   {
+//     key: "5",
+//     name: "Singer 1",
+//     status: "public",
+//   },
+// ];
 const ListAllSingers = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -38,6 +39,8 @@ const ListAllSingers = () => {
 
   const [selectedRow, setSelectedRow] = useState(null); // State để lưu thông tin hàng được chọn
   const [modalVisible, setModalVisible] = useState(false); // State để kiểm soát việc hiển thị modal
+
+  const [data, setData] = useState(false);
 
   const openDetailSong = (record) => {
     setSelectedRow(record); // Lưu thông tin hàng được chọn vào state
@@ -192,22 +195,46 @@ const ListAllSingers = () => {
       ),
     },
   ];
+
+  useEffect(() => {
+    (async () => {
+      const datasourceget = await getAllSingers();
+      setData(datasourceget.object);
+    })();
+  }, []);
+
   return (
     <>
-      <Table columns={columns} dataSource={data} />
-      <Modal
-        visible={modalVisible}
-        onCancel={handleModalClose}
-        footer={null}
-        title="Song Details"
-      >
-        {selectedRow && (
-          <div>
-            <p>Singer Name: {selectedRow.name}</p>
-            {/* more info about singer */}
-          </div>
-        )}
-      </Modal>
+      {data === false ? (
+        <>Loading</>
+      ) : data.length === 0 ? (
+        <>No singer found</>
+      ) : (
+        <>
+          <Table
+            columns={columns}
+            dataSource={data.map((item) => {
+              return {
+                key: item.id,
+                name: item.name,
+                status: item.email,
+              };
+            })}
+          />
+          <Modal
+            visible={modalVisible}
+            onCancel={handleModalClose}
+            footer={null}
+            title="Song Details"
+          >
+            {selectedRow && (
+              <div>
+                <p>Singer Name: {selectedRow.name}</p>
+              </div>
+            )}
+          </Modal>
+        </>
+      )}
     </>
   );
 };

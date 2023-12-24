@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Avatar, Divider, List, Skeleton } from "antd";
+import { Avatar, Divider, List, Skeleton, Switch } from "antd";
 import { useSelector } from "react-redux";
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 const SearchResult = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -35,6 +36,7 @@ const SearchResult = () => {
     );
     setList(filteredData);
   }, [resultSearch]);
+  const handleOnChangeSong = () => {};
   return (
     <div
       id="scrollableDiv"
@@ -70,7 +72,12 @@ const SearchResult = () => {
                 title={<a href="https://ant.design">{item.name.last}</a>}
                 description={item.email}
               />
-              <div>Content</div>
+              {/* <Switch defaultChecked={item.active} onChange={handleOnChangeSong} /> */}
+              <Switch
+                checkedChildren="active"
+                unCheckedChildren="unactive"
+                onChange={handleOnChangeSong}
+              />
             </List.Item>
           )}
         />

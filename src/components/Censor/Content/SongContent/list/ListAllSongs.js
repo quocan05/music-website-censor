@@ -2,6 +2,9 @@ import { SearchOutlined } from "@ant-design/icons";
 import React, { useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { Button, Input, Modal, Space, Table } from "antd";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
+
 const data = [
   {
     key: "1",
@@ -238,17 +241,23 @@ const ListAllSongs = () => {
     <>
       <Table columns={columns} dataSource={data} />
       <Modal
-        visible={modalVisible}
+        open={modalVisible}
         onCancel={handleModalClose}
         footer={null}
         title="Song Details"
+        width={720}
       >
         {selectedRow && (
-          <div>
+          <>
             <p>Song Name: {selectedRow.name}</p>
             <p>Singer: {selectedRow.singer}</p>
-            {/* more info about song */}
-          </div>
+            <AudioPlayer
+              autoPlay
+              src="http://example.com/audio.mp3"
+              onPlay={(e) => console.log("onPlay")}
+              // other props here
+            />
+          </>
         )}
       </Modal>
     </>

@@ -27,6 +27,18 @@ export const ModalReducer = (state = initialState, action) => {
         open: false,
       };
 
+    case "OPEN_MODAL_ADD_NEW_PLAYLIST":
+      return {
+        ...state,
+        open: true,
+      };
+
+    case "CLOSE_MODAL_ADD_NEW_PLAYLIST":
+      return {
+        ...state,
+        open: false,
+      };
+
     default:
       return state;
   }
