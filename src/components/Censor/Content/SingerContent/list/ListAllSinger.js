@@ -206,7 +206,7 @@ const ListAllSingers = () => {
   return (
     <>
       {data === false ? (
-        <>Loading</>
+        <>Loading....</>
       ) : data.length === 0 ? (
         <>No singer found</>
       ) : (

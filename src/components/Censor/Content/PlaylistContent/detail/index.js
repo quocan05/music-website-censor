@@ -1,14 +1,21 @@
-import { Button, Card, Modal, Switch } from "antd";
+import { Button, Card, Modal, Popconfirm, Switch, message } from "antd";
 import Search from "antd/es/input/Search";
-import ListSongOfPlaylist from "./ListSongOfPlaylist";
 import ModalSearch from "./ModalSearch";
 import { useDispatch } from "react-redux";
 import { openModalSearch } from "../../../../../redux/actions/search";
+import SongOfPlaylist from "./SongOfPlaylist";
 
 export const DetailPlaylist = () => {
   const dispatch = useDispatch();
   const showModalSearch = () => {
     dispatch(openModalSearch());
+  };
+
+  const confirm = (e) => {
+    console.log(e);
+  };
+  const cancel = (e) => {
+    console.log(e);
   };
 
   return (
@@ -33,10 +40,21 @@ export const DetailPlaylist = () => {
             <Button type="primary" onClick={showModalSearch}>
               Add new song
             </Button>
+
+            <Popconfirm
+              title="Delete playlist"
+              description="Are you sure to delete this playlist?"
+              onConfirm={confirm}
+              onCancel={cancel}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button danger>Delete this playlist</Button>
+            </Popconfirm>
           </div>
         }
       >
-        <ListSongOfPlaylist />
+        <SongOfPlaylist />
       </Card>
 
       <ModalSearch />

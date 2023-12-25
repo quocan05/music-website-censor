@@ -4,6 +4,7 @@ import { Button } from "antd";
 import { useDispatch } from "react-redux";
 import { openModalAddNewPlaylist } from "../../../../redux/actions/modal";
 import ModalAddNewPlaylist from "./main/ModalAddNewPlayList";
+import Search from "antd/es/input/Search";
 
 export const ManagePlaylists = () => {
   const dispatch = useDispatch();

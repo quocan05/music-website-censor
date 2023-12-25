@@ -13,6 +13,7 @@ const data = [
     status: "public",
     category: "edm",
     playlist: "Playlist 1",
+    lyric: "abcxyz",
   },
   {
     key: "2",
@@ -21,6 +22,7 @@ const data = [
     status: "private",
     category: "edm",
     playlist: "Playlist oasjd",
+    lyric: "abcxyz",
   },
   {
     key: "3",
@@ -29,6 +31,7 @@ const data = [
     status: "private",
     category: "edm",
     playlist: "Playlist 1",
+    lyric: "abcxyz",
   },
   {
     key: "4",
@@ -37,6 +40,7 @@ const data = [
     status: "public",
     category: "jazz",
     playlist: "Playlist 1",
+    lyric: "abcxyz",
   },
   {
     key: "5",
@@ -45,6 +49,7 @@ const data = [
     status: "public",
     category: "edm",
     playlist: "Playlist 1",
+    lyric: "abcxyz",
   },
 ];
 const ListAllSongs = () => {
@@ -251,6 +256,7 @@ const ListAllSongs = () => {
           <>
             <p>Song Name: {selectedRow.name}</p>
             <p>Singer: {selectedRow.singer}</p>
+            <p>Lyric: {selectedRow.lyric}</p>
             <AudioPlayer
               autoPlay
               src="http://example.com/audio.mp3"

@@ -17,38 +17,11 @@ const tailLayout = {
 };
 const FormAddPlaylist = () => {
   const [form] = Form.useForm();
-  const onGenderChange = (value) => {
-    switch (value) {
-      case "male":
-        form.setFieldsValue({
-          note: "Hi, man!",
-        });
-        break;
-      case "female":
-        form.setFieldsValue({
-          note: "Hi, lady!",
-        });
-        break;
-      case "other":
-        form.setFieldsValue({
-          note: "Hi there!",
-        });
-        break;
-      default:
-    }
-  };
+  const onStatusChange = (value) => {};
   const onFinish = (values) => {
     console.log(values);
   };
-  const onReset = () => {
-    form.resetFields();
-  };
-  const onFill = () => {
-    form.setFieldsValue({
-      note: "Hello world!",
-      gender: "male",
-    });
-  };
+
   return (
     <Form
       {...layout}
@@ -60,6 +33,7 @@ const FormAddPlaylist = () => {
       }}
     >
       <Form.Item
+        name="name"
         label="Name"
         rules={[
           {
@@ -70,6 +44,7 @@ const FormAddPlaylist = () => {
         <Input />
       </Form.Item>
       <Form.Item
+        name="status"
         label="Status"
         rules={[
           {
@@ -79,45 +54,18 @@ const FormAddPlaylist = () => {
       >
         <Select
           placeholder="Select status"
-          onChange={onGenderChange}
+          onChange={onStatusChange}
           allowClear
         >
           <Option value="public">public</Option>
           <Option value="private">private</Option>
         </Select>
       </Form.Item>
-      <Form.Item
-        noStyle
-        shouldUpdate={(prevValues, currentValues) =>
-          prevValues.gender !== currentValues.gender
-        }
-      >
-        {({ getFieldValue }) =>
-          getFieldValue("gender") === "other" ? (
-            <Form.Item
-              name="customizeGender"
-              label="Customize Gender"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          ) : null
-        }
-      </Form.Item>
+
       <Form.Item {...tailLayout}>
         <Space>
           <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-          <Button htmlType="button" onClick={onReset}>
-            Reset
-          </Button>
-          <Button type="link" htmlType="button" onClick={onFill}>
-            Fill form
+            Add new playlist
           </Button>
         </Space>
       </Form.Item>
