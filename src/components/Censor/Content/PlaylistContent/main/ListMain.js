@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Divider, Row, Slider } from "antd";
 import { CardDisplay } from "./CardDisplay";
+import { getAllPlayList } from "../../../../../services/api/playlist";
 const count = 10;
 
 const ListMain = () => {
@@ -9,16 +10,13 @@ const ListMain = () => {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
   const [itemSelected, setItemSelected] = useState(null);
-  const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 
   useEffect(() => {
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((res) => {
-        setInitLoading(false);
-        setData(res.results);
-        setList(res.results);
-      });
+    (async () => {
+      const datasrc = await getAllPlayList();
+      console.log("Check>>> ", datasrc);
+      setData(datasrc.content);
+    })();
   }, []);
   const style = {
     background: "#0092ff",

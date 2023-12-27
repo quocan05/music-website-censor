@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Avatar, Button, Card, List, Popconfirm, Skeleton } from "antd";
 import Search from "antd/es/input/Search";
 import PendingSingers from "./PendingSingers";
-const count = 30;
-const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 const ListPendingSingers = () => {
   const [initLoading, setInitLoading] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -11,16 +9,6 @@ const ListPendingSingers = () => {
   const [search, setSearch] = useState("");
   const [list, setList] = useState([]);
   const [option, setOption] = useState("");
-
-  useEffect(() => {
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((res) => {
-        setInitLoading(false);
-        setData(res.results);
-        setList(res.results);
-      });
-  }, []);
 
   const onSearch = (value, _e, info) => {
     const filteredData = data.filter((item) =>
@@ -88,7 +76,7 @@ const ListPendingSingers = () => {
         )}
       /> */}
 
-      <PendingSingers dataPending={data} search={search} />
+      <PendingSingers search={search} />
     </Card>
   );
 };

@@ -1,29 +1,23 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Avatar, Button, Divider, List, Skeleton } from "antd";
-const SongOfPlaylist = () => {
+import { getAllSongByPlaylist } from "../../../../../services/api/playlist";
+import { useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
+const SongOfPlaylist = ({ data }) => {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const loadMoreData = () => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
-    fetch(
-      "https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo"
-    )
-      .then((res) => res.json())
-      .then((body) => {
-        setData([...data, ...body.results]);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  };
+  const [datasrc, setDataSrc] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
-    loadMoreData();
+    (async () => {
+      console.log("running");
+      if (data.id === undefined) navigate("/censor-manage-playlist");
+      const list = await getAllSongByPlaylist(data.id);
+      console.log("list ", list);
+      setDataSrc(list.content);
+    })();
   }, []);
+
   return (
     <div
       id="scrollableDiv"
@@ -35,9 +29,9 @@ const SongOfPlaylist = () => {
       }}
     >
       <InfiniteScroll
-        dataLength={data.length}
-        next={loadMoreData}
-        hasMore={data.length < 50}
+        dataLength={datasrc.length}
+        //next={loadMoreData}
+        hasMore={datasrc.length < 0}
         loader={
           <Skeleton
             avatar
@@ -51,13 +45,15 @@ const SongOfPlaylist = () => {
         scrollableTarget="scrollableDiv"
       >
         <List
-          dataSource={data}
+          dataSource={datasrc}
           renderItem={(item) => (
-            <List.Item key={item.email}>
+            <List.Item key={item.id}>
               <List.Item.Meta
-                avatar={<Avatar src={item.picture.large} />}
-                title={<a href="https://ant.design">{item.name.last}</a>}
-                description={item.email}
+                avatar={
+                  <Avatar src="https://e1.pngegg.com/pngimages/1001/845/png-clipart-somacro-45-300dpi-social-media-icons-soundcloud-soundcloud-logo.png" />
+                }
+                title={<a>{item.name}</a>}
+                description={""}
               />
               <Button danger>Remove</Button>
             </List.Item>

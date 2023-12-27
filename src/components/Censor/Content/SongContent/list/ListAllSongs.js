@@ -1,63 +1,17 @@
 import { SearchOutlined } from "@ant-design/icons";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { Button, Input, Modal, Space, Table } from "antd";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import { getAllSong } from "../../../../../services/api/song";
 
-const data = [
-  {
-    key: "1",
-    name: "Song 2",
-    singer: "Singer 1",
-    status: "public",
-    category: "edm",
-    playlist: "Playlist 1",
-    lyric: "abcxyz",
-  },
-  {
-    key: "2",
-    name: "Song 22",
-    singer: "Singer 11",
-    status: "private",
-    category: "edm",
-    playlist: "Playlist oasjd",
-    lyric: "abcxyz",
-  },
-  {
-    key: "3",
-    name: "Song 3",
-    singer: "Singer 1",
-    status: "private",
-    category: "edm",
-    playlist: "Playlist 1",
-    lyric: "abcxyz",
-  },
-  {
-    key: "4",
-    name: "Song 122",
-    singer: "Singer 1",
-    status: "public",
-    category: "jazz",
-    playlist: "Playlist 1",
-    lyric: "abcxyz",
-  },
-  {
-    key: "5",
-    name: "Song 1",
-    singer: "Singer 1",
-    status: "public",
-    category: "edm",
-    playlist: "Playlist 1",
-    lyric: "abcxyz",
-  },
-];
 const ListAllSongs = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
   const [searchedData, setSearchedData] = useState([]); // State mới để lưu trữ dữ liệu tìm kiếm
-
+  const [data, setData] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null); // State để lưu thông tin hàng được chọn
   const [modalVisible, setModalVisible] = useState(false); // State để kiểm soát việc hiển thị modal
 
@@ -242,6 +196,15 @@ const ListAllSongs = () => {
       ),
     },
   ];
+
+  useEffect(() => {
+    (async () => {
+      const datasrc = await getAllSong();
+      setData(datasrc.content);
+      console.log("data song >>>", datasrc);
+    })();
+  }, []);
+
   return (
     <>
       <Table columns={columns} dataSource={data} />

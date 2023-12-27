@@ -1,15 +1,18 @@
 import { Button, Card, Modal, Popconfirm, Switch, message } from "antd";
 import Search from "antd/es/input/Search";
 import ModalSearch from "./ModalSearch";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModalSearch } from "../../../../../redux/actions/search";
 import SongOfPlaylist from "./SongOfPlaylist";
 
 export const DetailPlaylist = () => {
   const dispatch = useDispatch();
+  const datasrc = useSelector((state) => state.openPlaylist.data);
   const showModalSearch = () => {
     dispatch(openModalSearch());
   };
+
+  console.log("abcabca", datasrc);
 
   const confirm = (e) => {
     console.log(e);
@@ -21,7 +24,7 @@ export const DetailPlaylist = () => {
   return (
     <>
       <Card
-        title="Detail playlist ${nameplaylist}"
+        title={`Detail playlist : ${datasrc.name}`}
         extra={
           <div
             style={{
@@ -54,7 +57,7 @@ export const DetailPlaylist = () => {
           </div>
         }
       >
-        <SongOfPlaylist />
+        <SongOfPlaylist data={datasrc} />
       </Card>
 
       <ModalSearch />

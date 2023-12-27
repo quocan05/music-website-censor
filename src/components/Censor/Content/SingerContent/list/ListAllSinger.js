@@ -2,7 +2,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { Button, Input, Modal, Space, Table } from "antd";
-import { getAllSingers } from "../../../../../services/singers";
+import { getAllSinger } from "../../../../../services/api/singer";
 // const data = [
 //   {
 //     key: "1",
@@ -198,8 +198,9 @@ const ListAllSingers = () => {
 
   useEffect(() => {
     (async () => {
-      const datasourceget = await getAllSingers();
-      setData(datasourceget.object);
+      const datasourceget = await getAllSinger();
+      console.log("check datasrc>>>", datasourceget);
+      setData(datasourceget.content);
     })();
   }, []);
 
