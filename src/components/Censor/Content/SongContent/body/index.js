@@ -8,7 +8,7 @@ const TabSongs = () => {
   const [size, setSize] = useState("small");
   const tabs = [
     { name: "All songs", id: 1, element: <ListAllSongs /> },
-    // { name: "Pending songs", id: 2, element: <ListPendingSong /> },
+    { name: "Pending songs", id: 2, element: <ListPendingSong /> },
     { name: "Edit song", id: 3, element: <EditSong /> },
   ];
   const onChange = (e) => {

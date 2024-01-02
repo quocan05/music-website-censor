@@ -1,7 +1,7 @@
 import { SearchOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
-import { Button, Input, Modal, Space, Table } from "antd";
+import { Button, Input, Modal, Space, Table, Tag } from "antd";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { getAllSong } from "../../../../../services/api/song";
@@ -168,16 +168,14 @@ const ListAllSongs = () => {
     },
     {
       title: "Category",
-      dataIndex: "category",
-      key: "category",
+      dataIndex: "categories",
+      key: "categories",
       width: "20%",
-      ...getColumnSearchProps("category"),
-    },
-    {
-      title: "Playlist name",
-      dataIndex: "playlist",
-      key: "playlist",
-      width: "20%",
+      render: (_, record) => {
+        return record.categories.map((category, index) => {
+          return <Tag key={index}>{category.name}</Tag>;
+        });
+      },
     },
     {
       title: "Status",

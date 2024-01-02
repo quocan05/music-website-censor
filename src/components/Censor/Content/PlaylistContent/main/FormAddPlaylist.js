@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form, Input, Select, Space } from "antd";
+import { savePlaylist } from "../../../../../services/api/playlist";
 const { Option } = Select;
 const layout = {
   labelCol: {
@@ -18,8 +19,12 @@ const tailLayout = {
 const FormAddPlaylist = () => {
   const [form] = Form.useForm();
   const onStatusChange = (value) => {};
-  const onFinish = (values) => {
-    console.log(values);
+  const onFinish = async (values) => {
+    await savePlaylist(values);
+  };
+
+  const handleAddNewPlaylist = async () => {
+    console.log("clicking");
   };
 
   return (
@@ -64,7 +69,11 @@ const FormAddPlaylist = () => {
 
       <Form.Item {...tailLayout}>
         <Space>
-          <Button type="primary" htmlType="submit">
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={handleAddNewPlaylist}
+          >
             Add new playlist
           </Button>
         </Space>

@@ -3,21 +3,17 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Avatar, Button, Divider, List, Skeleton, Switch } from "antd";
 import { useSelector } from "react-redux";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import {
-  getAllPendingSong,
-  getAllSong,
-} from "../../../../../services/api/song";
-const SearchResult = () => {
+import { getAllPendingSong } from "../../../../../services/api/song";
+const SearchResultPending = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
   const resultSearch = useSelector((state) => state.search.input);
   useEffect(() => {
     (async () => {
-      const datasrc = await getAllSong();
-      //console.log("all pending data: ", datasrc.content);
-      //console.log("list ", list);
+      const datasrc = await getAllPendingSong();
       setData(datasrc.content);
+      console.log("data pending: >>>", datasrc);
     })();
   }, [data]);
 
@@ -27,9 +23,7 @@ const SearchResult = () => {
     );
     setList(filteredData);
   }, [resultSearch]);
-  const handleChangeStatusSong = (value) => {
-    console.log("Check statussong   ", value);
-  };
+  const handleOnChangeSong = () => {};
   return (
     <div
       id="scrollableDiv"
@@ -71,11 +65,11 @@ const SearchResult = () => {
                 description={item.email}
               />
               {/* <Switch defaultChecked={item.active} onChange={handleOnChangeSong} /> */}
-              <Switch
-                checkedChildren="public"
-                unCheckedChildren="private"
-                defaultChecked={item.status === 0}
-              />
+              <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>
+                <Button>Play</Button>
+                <Button type="primary">Approve</Button>
+                <Button danger>Reject</Button>
+              </div>
             </List.Item>
           )}
         />
@@ -83,4 +77,4 @@ const SearchResult = () => {
     </div>
   );
 };
-export default SearchResult;
+export default SearchResultPending;
