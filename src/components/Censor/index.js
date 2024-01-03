@@ -34,7 +34,7 @@ export const Censor = () => {
               fontWeight: "600",
             }}
           >
-            Soundtify for Censor
+            KMA Music for Censor
           </Divider>
           <Menu
             theme="dark"

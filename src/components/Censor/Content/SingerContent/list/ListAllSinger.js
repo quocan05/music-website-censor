@@ -2,35 +2,11 @@ import { SearchOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { Button, Input, Modal, Space, Table } from "antd";
-import { getAllSinger } from "../../../../../services/api/singer";
-// const data = [
-//   {
-//     key: "1",
-//     name: "Singer 2",
-//     status: "public",
-//   },
-//   {
-//     key: "2",
-//     name: "Singer 22",
+import {
+  getAllActiveSinger,
+  getAllSinger,
+} from "../../../../../services/api/singer";
 
-//     status: "private",
-//   },
-//   {
-//     key: "3",
-//     name: "Sinmger 3",
-//     status: "private",
-//   },
-//   {
-//     key: "4",
-//     name: "Singer 122",
-//     status: "public",
-//   },
-//   {
-//     key: "5",
-//     name: "Singer 1",
-//     status: "public",
-//   },
-// ];
 const ListAllSingers = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -198,7 +174,7 @@ const ListAllSingers = () => {
 
   useEffect(() => {
     (async () => {
-      const datasourceget = await getAllSinger();
+      const datasourceget = await getAllActiveSinger();
       console.log("check datasrc>>>", datasourceget);
       setData(datasourceget.content);
     })();

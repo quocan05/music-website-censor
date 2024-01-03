@@ -12,24 +12,33 @@ const SearchResult = () => {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
   const resultSearch = useSelector((state) => state.search.input);
+  // const [reload, setReload] = useState(false);
+  // const [showReloadButton, setShowReloadButton] = useState(true);
+
+  // const handleReload = () => {
+  //   setReload(!reload);
+  //   setShowReloadButton(false);
+  // };
+
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
+      setLoading(true);
       const datasrc = await getAllSong();
-      //console.log("all pending data: ", datasrc.content);
-      //console.log("list ", list);
       setData(datasrc.content);
-    })();
-  }, [data]);
+      setLoading(false);
+    };
+    fetchData();
+  }, []); // Kích hoạt useEffect khi reload thay đổi
 
   useEffect(() => {
     const filteredData = data.filter((item) =>
       item.name.toLowerCase().includes(resultSearch.toLowerCase())
     );
     setList(filteredData);
-  }, [resultSearch]);
-  const handleChangeStatusSong = (value) => {
-    console.log("Check statussong   ", value);
-  };
+  }, [resultSearch, data]);
+
+  const handleOnChangeSong = () => {};
+
   return (
     <div
       id="scrollableDiv"
@@ -41,17 +50,8 @@ const SearchResult = () => {
       }}
     >
       <InfiniteScroll
-        dataLength={data.length}
-        hasMore={data.length < 50}
-        // loader={
-        //   <Skeleton
-        //     avatar
-        //     paragraph={{
-        //       rows: 1,
-        //     }}
-        //     active
-        //   />
-        // }
+        dataLength={list.length}
+        hasMore={list.length < 50}
         endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
         scrollableTarget="scrollableDiv"
       >
@@ -70,7 +70,6 @@ const SearchResult = () => {
                 title={<a>{item.name}</a>}
                 description={item.email}
               />
-              {/* <Switch defaultChecked={item.active} onChange={handleOnChangeSong} /> */}
               <Switch
                 checkedChildren="public"
                 unCheckedChildren="private"
@@ -83,4 +82,8 @@ const SearchResult = () => {
     </div>
   );
 };
+
+/*
+ 
+*/
 export default SearchResult;

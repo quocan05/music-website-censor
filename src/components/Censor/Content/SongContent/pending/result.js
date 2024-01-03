@@ -4,26 +4,39 @@ import { Avatar, Button, Divider, List, Skeleton, Switch } from "antd";
 import { useSelector } from "react-redux";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import { getAllPendingSong } from "../../../../../services/api/song";
+
 const SearchResultPending = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
   const resultSearch = useSelector((state) => state.search.input);
+  // const [reload, setReload] = useState(false);
+  // const [showReloadButton, setShowReloadButton] = useState(true);
+
+  // const handleReload = () => {
+  //   setReload(!reload);
+  //   setShowReloadButton(false);
+  // };
+
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
+      setLoading(true);
       const datasrc = await getAllPendingSong();
       setData(datasrc.content);
-      console.log("data pending: >>>", datasrc);
-    })();
-  }, [data]);
+      setLoading(false);
+    };
+    fetchData();
+  }, []); // Kích hoạt useEffect khi reload thay đổi
 
   useEffect(() => {
     const filteredData = data.filter((item) =>
       item.name.toLowerCase().includes(resultSearch.toLowerCase())
     );
     setList(filteredData);
-  }, [resultSearch]);
+  }, [resultSearch, data]);
+
   const handleOnChangeSong = () => {};
+
   return (
     <div
       id="scrollableDiv"
@@ -35,17 +48,8 @@ const SearchResultPending = () => {
       }}
     >
       <InfiniteScroll
-        dataLength={data.length}
-        hasMore={data.length < 50}
-        // loader={
-        //   <Skeleton
-        //     avatar
-        //     paragraph={{
-        //       rows: 1,
-        //     }}
-        //     active
-        //   />
-        // }
+        dataLength={list.length}
+        hasMore={list.length < 50}
         endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
         scrollableTarget="scrollableDiv"
       >
@@ -64,7 +68,6 @@ const SearchResultPending = () => {
                 title={<a>{item.name}</a>}
                 description={item.email}
               />
-              {/* <Switch defaultChecked={item.active} onChange={handleOnChangeSong} /> */}
               <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>
                 <Button>Play</Button>
                 <Button type="primary">Approve</Button>
@@ -77,4 +80,5 @@ const SearchResultPending = () => {
     </div>
   );
 };
+
 export default SearchResultPending;

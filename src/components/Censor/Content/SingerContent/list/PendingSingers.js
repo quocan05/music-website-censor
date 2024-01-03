@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Avatar, Divider, List, Skeleton, Switch } from "antd";
+import { getAllUnActiveSinger } from "../../../../../services/api/singer";
 const PendingSingers = (props) => {
-  const count = 30;
-  const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
-
   const [data, setData] = useState([]);
   const [search, setSearch] = useState(props.search);
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((res) => {
-        setData(res.results);
-        setList(res.results);
-      });
+    const fetchData = async () => {
+      const datasrc = await getAllUnActiveSinger();
+      setData(datasrc.content);
+    };
+    fetchData();
   }, []);
 
   console.log("data: ", data, "search: ", search);
@@ -23,7 +20,7 @@ const PendingSingers = (props) => {
     if (props.search) {
       // Lọc danh sách theo từ khóa tìm kiếm
       const filteredList = data.filter((item) =>
-        item.name.last.toLowerCase().includes(props.search.toLowerCase())
+        item.name.toLowerCase().includes(props.search.toLowerCase())
       );
       setList(filteredList); // Cập nhật danh sách hiển thị
     } else {
@@ -47,8 +44,14 @@ const PendingSingers = (props) => {
         renderItem={(item) => (
           <List.Item key={item.email}>
             <List.Item.Meta
-              avatar={<Avatar src={item.picture.large} />}
-              title={<a href="https://ant.design">{item.name.last}</a>}
+              avatar={
+                <Avatar
+                  src={
+                    "https://cdn.icon-icons.com/icons2/1465/PNG/512/166mansinger2_100662.png"
+                  }
+                />
+              }
+              title={<a>{item.bio}</a>}
               description={item.email}
             />
             <Switch checkedChildren={"Active"} unCheckedChildren={"Unactive"} />
